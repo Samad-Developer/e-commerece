@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +11,7 @@ interface Product {
 }
 
 export default function Home() {
+
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -23,12 +24,10 @@ export default function Home() {
         console.error("Error fetching products:", error);
       }
     };
-
     fetchProducts();
   }, []);
 
   return (
-   
     <main className="mt-24 flex flex-col items-center justify-center min-h-screen p-6">
       <div className="grid grid-cols-3 gap-8">
         {products.map((product) => (
@@ -46,6 +45,5 @@ export default function Home() {
       </div>
       <Link href="/dashboard?search=my-project">Click me</Link>
     </main>
-   
   );
 }

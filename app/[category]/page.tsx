@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaShoppingCart } from 'react-icons/fa';
- 
+
 const Page = () => {
   interface Product {
     id: number;
@@ -53,11 +53,11 @@ const Page = () => {
               </div>
               <p className="text-gray-600 mt-2 mb-6">price <span className='font-bold'>${product.price}</span></p>
               <button
-      className="flex justify-center px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-    >
-      Add to Cart
-      <FaShoppingCart className="ml-2" />
-    </button>            </div>
+                className="flex justify-center px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Add to Cart
+                <FaShoppingCart className="ml-2" />
+              </button></div>
           </div>
         ))}
       </div>
