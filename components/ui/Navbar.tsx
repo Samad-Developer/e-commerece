@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { BiSearch } from 'react-icons/bi';
 import { FaShoppingCart } from 'react-icons/fa';
 import { FaEllipsisV } from 'react-icons/fa';
-import image from '../../../public/next.svg'
+import image from '../../public/next.svg'
 import {
     Popover,
     PopoverContent,
@@ -18,17 +18,17 @@ interface Category {
 
 const Navbar = () => {
     const categories: Category[] = [
-        { name: "electronics", path: "/electronics" },
-        { name: "men's clothing", path: "/men's clothing" },
-        { name: "women's clothing", path: "/women's clothing" },
-        { name: "jewelery", path: "/jewelery" },
+        { name: "Electronics", path: "/electronics" },
+        { name: "Men's clothing", path: "/men's clothing" },
+        { name: "Women's clothing", path: "/women's clothing" },
+        { name: "Jewelery", path: "/jewelery" },
     ];
     return (
         <nav className="w-full h-16 md:h-20 lg:h-24 flex flex-wrap items-center justify-between bg-[#FFFCFA] px-8">
             {/* Logo or Brand */}
             <Image src={image} alt="Logo" width={100} height={100} />
             {/* Navigation Links */}
-            <ul className={`hidden myown:flex items-center space-x-8 mt-4 md:mt-0 w-full md:w-auto`}>
+            <ul className={`hidden xl:flex items-center space-x-8 mt-4 md:mt-0 w-full md:w-auto`}>
                 {categories.map((category, index) => (
                     <li key={index} className="text-sm md:text-base lg:text-lg">
                         <Link href={`${category.path}`}>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 ))}
             </ul>
             {/* Search Box */}
-            <div className="hidden myown:flex items-center mt-4 md:mt-0">
+            <div className="hidden xl:flex items-center mt-4 md:mt-0">
                 <input
                     type="text"
                     placeholder="Search..."
@@ -49,12 +49,12 @@ const Navbar = () => {
                 </button>
             </div>
             {/* Cart */}
-            <div className="hidden myown:flex items-center mt-4 md:mt-0">
+            <div className="hidden xl:flex items-center mt-4 md:mt-0">
                 <FaShoppingCart className="h-8 w-8 text-gray-600" />
             </div>
             {/* mobile menu */}
             <Popover>
-                <PopoverTrigger><FaEllipsisV className="myown:hidden h-6 w-6 text-gray-600" /></PopoverTrigger>
+                <PopoverTrigger><FaEllipsisV className="xl:hidden h-6 w-6 text-gray-600" /></PopoverTrigger>
                 <PopoverContent>
                     <div className="flex justify-end"><FaShoppingCart className="h-8 w-8 text-gray-600" /></div>
                     {/* menu links */}
@@ -80,7 +80,6 @@ const Navbar = () => {
                     </div>
                 </PopoverContent>
             </Popover>
-
         </nav>
     );
 }

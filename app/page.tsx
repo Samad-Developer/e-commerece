@@ -57,8 +57,6 @@ export default async function Home() {
           </div>
         ))}
       </div>
-
-      <Link href="/dashboard?search=my-project">Click me</Link>
     </main>
   );
 }
