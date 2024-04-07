@@ -1,5 +1,3 @@
-'use client'
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
@@ -13,27 +11,26 @@ interface Product {
   description: string;
 }
 
-export default function Home() {
+async function getData() {
+  const res = await fetch('https://fakestoreapi.com/products')
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+ 
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
 
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data: Product[] = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    fetchProducts();
-  }, []);
+export default async function Home() {
+  const products = await getData()
 
   return (
     <main className="mt-24 flex flex-col items-center justify-center min-h-screen p-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 font-inter">
-        {products.map((product) => (
+        {products.map((product: Product) => (
           <div key={product.id} className="shadow-xl bg-white w-full sm:max-w-xs h-auto p-4">
             <div className="w-full h-40 relative flex items-center justify-center rounded-md overflow-hidden mb-4">
               <Image
