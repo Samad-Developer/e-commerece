@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { FaShoppingCart } from "react-icons/fa";
 
 interface Product {
@@ -13,24 +14,21 @@ interface Product {
 
 async function getData() {
   const res = await fetch('https://fakestoreapi.com/products')
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
- 
+
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
- 
   return res.json()
 }
 
 export default async function Home() {
   const products = await getData()
-
   return (
     <main className="mt-24 flex flex-col items-center justify-center min-h-screen p-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 font-inter">
         {products.map((product: Product) => (
+          <Link href={`/${product.category}/${product.id}`}>
           <div key={product.id} className="shadow-xl bg-white w-full sm:max-w-xs h-auto p-4">
             <div className="w-full h-40 relative flex items-center justify-center rounded-md overflow-hidden mb-4">
               <Image
@@ -47,14 +45,15 @@ export default async function Home() {
                 <p className="text-gray-600 mb-6 line-clamp-3">{product.description}</p>
               </div>
               <p className="text-gray-600 mt-2 mb-6">price <span className='font-bold'>${product.price}</span></p>
-              <button
-                className="flex items-center justify-center px-4 py-3 bg-[#201e1e] text-white rounded-md shadow-md hover:bg-[#000000] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-              >
-                <p className="mr-2">Add to Cart</p>
-                <FaShoppingCart />
-              </button>
+                <button
+                  className="flex items-center justify-center px-4 w-full py-3 bg-[#201e1e] text-white rounded-md shadow-md hover:bg-[#000000] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                  <p className="mr-2">Add to Cart</p>
+                  <FaShoppingCart />
+                </button>
             </div>
           </div>
+          </Link>
         ))}
       </div>
     </main>
