@@ -16,7 +16,7 @@ const Navbar = () => {
         { name: "women's clothing", path: "/women's clothing" },
         { name: "jewelery", path: "/jewelery" },
     ];
-
+    // console.log(state.cart)
     return (
         <nav className="w-full h-16 md:h-20 lg:h-24 flex flex-wrap items-center justify-between bg-[#FFFCFA] px-8">
             {/* Logo or Brand */}

@@ -16,6 +16,7 @@ const Page = () => {
     description: string;
   }
   const params = useParams<{ category: string }>()
+  console.log("Params is here you wanna check it ", params)
   const category = params.category;
   const [products, setProducts] = useState<Product[]>([]);
   console.log(products)
@@ -34,10 +35,10 @@ const Page = () => {
 
   return (
     <main className="mt-10 flex flex-col items-center justify-center min-h-screen p-6">
-      <div className="grid grid-cols-4 gap-4 font-inter">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 font-inter">
         {products.map((product) => (
-          <div key={product.id} className="shadow-xl bg-[#FFFFFF] w-[302px] h-[520px] p-4">
-            <div className="w-40 h-40 relative rounded-md overflow-hidden">
+          <div key={product.id} className="shadow-xl bg-white w-full sm:max-w-xs h-auto p-4">
+            <div className="w-full h-40 relative flex items-center justify-center rounded-md overflow-hidden mb-4">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -53,11 +54,13 @@ const Page = () => {
               </div>
               <p className="text-gray-600 mt-2 mb-6">price <span className='font-bold'>${product.price}</span></p>
               <button
-                className="flex justify-center px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                // onClick={() => addToCart(product)}
+                className="flex items-center justify-center px-4 py-3 bg-[#201e1e] text-white rounded-md shadow-md hover:bg-[#000000] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
-                Add to Cart
-                <FaShoppingCart className="ml-2" />
-              </button></div>
+                <p className="mr-2">Add to Cart</p>
+                <FaShoppingCart />
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -65,4 +68,5 @@ const Page = () => {
   );
 }
 
-export default Page;
+// export default connect(null, { addToCart })(Page);;
+export default Page
