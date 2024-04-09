@@ -17,16 +17,17 @@ const page = async () => {
   const { productDetails } = useParams();
   const product = await getData(productDetails)
   return (
-    <div className='flex flex-col md:flex-row mx-52 mt-6'>
-      <div>
-        <Image 
-          width={600}
-          height={600}
+    <div className='container py-8 flex flex-col sm:flex-row gap-8 sm:justify-around '>
+      <div className=''>
+        <Image
           src={product.image}
-          alt={product.title}
-          className='object-contain object-center' />
+          alt={product.alt}
+          width={300}
+          height={300}
+          layout='responsive'
+        />
       </div>
-      <div className='pl-10 '>
+      <div className='w-1/2'>
         <h5 className='font-bold text-base'>{product.title}</h5>
         <p className='mt-3 text-gray-400 font-bold'>Category</p>
         <p className='font-bold'>{product.category}</p>
