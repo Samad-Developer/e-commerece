@@ -27,8 +27,8 @@ const page = async () => {
           layout='responsive'
         />
       </div>
-      <div className='w-1/2'>
-        <h5 className='font-bold text-base'>{product.title}</h5>
+      <div className='sm:w-1/2'>
+        <h5 className='font-bold text-base w-full'>{product.title}</h5>
         <p className='mt-3 text-gray-400 font-bold'>Category</p>
         <p className='font-bold'>{product.category}</p>
         <p className='font-bold mt-5 text-gray-400'>Description</p>
